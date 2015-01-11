@@ -28,7 +28,8 @@ powerdat1$datetime <- paste(powerdat1$Date, powerdat1$Time)
 
 powerdat1$datetime <- strptime(powerdat1$datetime,format = "%Y-%m-%d %H:%M:%S")
 
-##plot Global_active_power vs day of week
+##plot all 3 Energy sub metering variables on the same plot vs day of week
+##with each identified using a differnt colour 
 par(ps=12)  # Make text 12 point
 par(font.lab=2)
 par(font.main=2)
