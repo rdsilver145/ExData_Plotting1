@@ -28,27 +28,29 @@ powerdat1$datetime <- paste(powerdat1$Date, powerdat1$Time)
 
 powerdat1$datetime <- strptime(powerdat1$datetime,format = "%Y-%m-%d %H:%M:%S")
 
-##plot Global_active_power vs day of week
+##set common parameters for plots
 par(ps=12)  # Make text 12 point
 par(font.lab=2)
 par(font.main=2)
 par(lwd=1)
+##create 4 individual plots in the same graphic pane 
 par(mfrow=c(2,2),mar=c(4,4,4,1))
 
-##plot 1
+##plot 1 Global Active Power vs day of week
 plot(font=2,ylab="Global Active Power",xlab="",powerdat1$datetime,powerdat1$Global_active_power,type="l")
 
-##plot 2
+##plot 2 Voltage vs day of week
 with(powerdat1,plot(font=2,datetime,Voltage,type="l"))
 
-##plot 3
+##plot 3  All 3 Energy sub metering variables on the same plot vs day of week
+##with each identified using a differnt colour 
 plot(powerdat1$datetime,powerdat1$Sub_metering_1,ylim=range(c(powerdat1$Sub_metering_1,powerdat1$Sub_metering_2,powerdat1$Sub_metering_3)),ylab="Energy sub metering",xlab="",type="l",col="black",font=2)
 lines(powerdat1$datetime,powerdat1$Sub_metering_2,col="red",font=2)
 lines(powerdat1$datetime,powerdat1$Sub_metering_3,col="blue",font=2)
 
 legend("topright",text.font=2,seg.len=1.5,y.intersp=0.8,bty="n",lwd=1,xjust=1,col=c("black", "red", "blue"), legend = c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
 
-##plot 4
+##plot 4 Global_reactive_power vs day of week
 with(powerdat1,plot(font=2,datetime,Global_reactive_power,type="l"))
 
 
